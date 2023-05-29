@@ -9,4 +9,6 @@ export const env = {
 
   /** 配置 API 请求的 host（包含端口） */
   CHATGPT_NEXT_API_HOST: process.env.CHATGPT_NEXT_API_HOST ?? 'api.openai.com',
+
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY ?? '',
 };

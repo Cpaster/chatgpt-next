@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const apiKey = getApiKey(cookies().get('apiKey')?.value);
+  const apiKey = env.OPENAI_API_KEY;
 
   const fetchResult = await fetch(`https://${env.CHATGPT_NEXT_API_HOST}/v1/chat/completions`, {
     method: HttpMethod.POST,
