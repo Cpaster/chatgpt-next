@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
   }
 
   // 正式环境透传即可
-  const apiKey = getApiKey(cookies().get('apiKey')?.value);
+  const apiKey = env.OPENAI_API_KEY;
 
   const fetchResult = await fetch(`https://${env.CHATGPT_NEXT_API_HOST}/v1/models`, {
     method: HttpMethod.GET,
