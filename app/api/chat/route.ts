@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
             // 获取 delta.content
             const content = (chunkJSON.choices[0].delta as { content: string }).content;
             if (content) {
-              controller.enqueue(decoder.decode(content, { stream: true }));
+              controller.enqueue(content);
             }
           } catch (e) {
             controller.error(e);
