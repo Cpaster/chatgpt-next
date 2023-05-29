@@ -11,8 +11,7 @@ export enum HttpStatus {
 }
 
 export const HttpHeaderJson = {
-  // 'Content-Type': 'application/json'
-  'Content-Type': 'text/plain'
+  'Content-Type': 'application/json'
 };
 
 /**
