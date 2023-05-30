@@ -27,7 +27,7 @@ export const Messages = () => {
 
   // 如果当前在浏览聊天记录，则展示该聊天记录的 messages
   if (history && typeof historyIndex === 'number') {
-    messages = history[historyIndex].messages;
+    messages = history[historyIndex]?.messages || [];
   }
 
   // messages = exampleMessages;

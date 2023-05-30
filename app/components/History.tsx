@@ -12,6 +12,8 @@ import { exportJSON } from '@/utils/export';
 import { last } from '@/utils/last';
 import { getContent } from '@/utils/message';
 
+import { getParams } from '@/utils/getParams';
+
 import { DeleteHistoryButton } from './buttons/DeleteHistoryButton';
 
 /**
@@ -45,6 +47,12 @@ export const HistoryItemComp: FC<{ historyIndex: 'current' | number; isActive: b
   isActive,
 }) => {
   const { messages, history, loadHistory } = useContext(ChatContext)!;
+
+  const id = getParams()?.id;
+
+  if (id) {
+    loadHistory(Number(id || 0));
+  }
 
   let historyItem: HistoryItem;
 

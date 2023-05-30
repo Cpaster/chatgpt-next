@@ -16,5 +16,6 @@ Dockerfile
 LICENSE
 
 public/prism.js
+public/jweixin-1.3.2.js
 public/prism-light.css
 public/prism-dark.css

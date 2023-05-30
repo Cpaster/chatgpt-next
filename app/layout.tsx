@@ -6,7 +6,7 @@ import { cookies, headers } from 'next/headers';
 
 import { ChatProvider } from '@/context/ChatContext';
 import { DeviceProvider } from '@/context/DeviceContext';
-import { LoginProvider } from '@/context/LoginContext';
+// import { LoginProvider } from '@/context/LoginContext';
 import { MenuProvider } from '@/context/MenuContext';
 import { SettingsProvider } from '@/context/SettingsContext';
 import { isWeChat as utilIsWeChat } from '@/utils/device';
@@ -28,8 +28,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const cookiesWindowHeight = cookies().get('windowHeight')?.value;
   const windowHeight = cookiesWindowHeight ? Number(cookiesWindowHeight) : '100vh';
 
-  const cookieApiKey = cookies().get('apiKey')?.value;
-
   return (
     <html lang="zh-CN">
       <body>
@@ -39,13 +37,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           windowWidth={windowWidth}
           windowHeight={windowHeight}
         >
-          <SettingsProvider isLogged={!!cookieApiKey}>
+          <SettingsProvider>
             <MenuProvider>
               <ChatProvider>{children}</ChatProvider>
             </MenuProvider>
           </SettingsProvider>
         </DeviceProvider>
         <script async src="/prism.js" />
+        <script async src="/jweixin-1.3.2.js" />
       </body>
     </html>
   );

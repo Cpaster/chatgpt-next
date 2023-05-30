@@ -5,7 +5,6 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 import { ChatContext } from '@/context/ChatContext';
 import { DeviceContext } from '@/context/DeviceContext';
-import { LoginContext } from '@/context/LoginContext';
 import { isDomChildren } from '@/utils/isDomChildren';
 
 export const TextareaForm: FC = () => {

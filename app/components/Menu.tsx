@@ -10,7 +10,7 @@ import { MenuContext, MenuKey } from '@/context/MenuContext';
 import { useDarkMode } from '@/hooks/useDarkMode';
 import { sleep } from '@/utils/sleep';
 
-import { LoginButton } from './buttons/LoginButton';
+// import { LoginButton } from './buttons/LoginButton';
 import { MenuEntryButton } from './buttons/MenuEntryButton';
 import { History } from './History';
 import { Settings } from './Settings';
@@ -102,7 +102,8 @@ const MenuTabs = () => {
       className={`w-inherit flex z-10 justify-end bg-chat-100 border-b-[0.5px] border-gray
                   md:flex-row-reverse md:px-4 md:border-r`}
     >
-      {[MenuKey.InboxStack, MenuKey.AdjustmentsHorizontal].map((key) => {
+      {/* MenuKey.AdjustmentsHorizontal */}
+      {[MenuKey.InboxStack].map((key) => {
         const Icon = IconMap[key];
         return (
           <button
@@ -147,7 +148,7 @@ const MenuFooter = () => {
                   pb-[calc(1.25rem+env(safe-area-inset-bottom))]`}
     >
       由{' '}
-      <a className="text-gray-link" href="https://github.com/xcatliu/chatgpt-next" target="_blank">
+      <a className="text-gray-link" target="_blank">
         智酷大脑
       </a>{' '}
       驱动

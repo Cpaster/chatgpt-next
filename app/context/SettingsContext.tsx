@@ -65,7 +65,7 @@ export const SettingsContext = createContext<{
   initAvailableModels: () => void;
 } | null>(null);
 
-export const SettingsProvider: FC<{ children: ReactNode; isLogged: boolean }> = ({ children, isLogged }) => {
+export const SettingsProvider: FC<{ children: ReactNode; }> = ({ children }) => {
   const [settings, dispatch] = useReducer(settingsReducer, INITIAL_SETTINGS);
 
   // 页面加载后从 cache 中读取 settings
@@ -81,9 +81,9 @@ export const SettingsProvider: FC<{ children: ReactNode; isLogged: boolean }> = 
     });
 
     // 每次页面加载的时候都请求一次 /api/models 来获取该 apiKey 可用的模型
-    if (isLogged) {
-      initAvailableModels();
-    }
+    // if (isLogged) {
+    //   initAvailableModels();
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

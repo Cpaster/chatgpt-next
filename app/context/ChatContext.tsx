@@ -5,7 +5,7 @@ import type { FC, ReactNode } from 'react';
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
 import { fetchApiChat } from '@/utils/api';
-import { getCache, setCache } from '@/utils/cache';
+import { getCache, setCache, setMiniProgramCache } from '@/utils/cache';
 import type { ChatResponse, Message } from '@/utils/constants';
 import { Role } from '@/utils/constants';
 import type { ResError } from '@/utils/error';
@@ -64,13 +64,13 @@ export const ChatProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
 
     // 如果检测到缓存中有上次还未存储到 cache 的 message，则加入到 history 中
-    if (messages && messages.length > 0) {
-      history = [{ messages }, ...(history ?? [])];
-      setHistory(history);
-      setCache('history', history);
-      setMessages([]);
-      setCache('messages', []);
-    }
+    // if (messages && messages.length > 0) {
+    //   history = [{ messages }, ...(history ?? [])];
+    //   setHistory(history);
+    //   setMiniProgramCache(history);
+    //   setMessages([]);
+    //   setCache('messages', []);
+    // }
 
     // 根据 history 是否存在决定当前 menu tab 是什么
     if (history === undefined) {
@@ -97,7 +97,7 @@ export const ChatProvider: FC<{ children: ReactNode }> = ({ children }) => {
         const newHistory = [...(history ?? [])];
         newMessages = [...newHistory.splice(historyIndex, 1)[0].messages];
         setHistory(newHistory);
-        setCache('history', newHistory);
+        setMiniProgramCache(newHistory);
         setMessages(newMessages);
         setCache('messages', newMessages);
       }
@@ -139,6 +139,14 @@ export const ChatProvider: FC<{ children: ReactNode }> = ({ children }) => {
         // 收到完整消息后，重新设置 messages
         newMessages = [...newMessages, { role: Role.assistant, content: fullContent }];
         setMessages(newMessages);
+        if (typeof historyIndex === 'number') {
+          const minHistory = history?.filter((_, index) => index !== Number(historyIndex)) ?? [];
+          const newHistory = [{ messages: newMessages }, ...(minHistory ?? [])];
+          setMiniProgramCache(newHistory);
+        } else {
+          const newHistory = [{ messages: newMessages }, ...(history ?? [])];
+          setMiniProgramCache(newHistory);
+        }
         setCache('messages', newMessages);
         // 如果当前滚动位置距离最底端少于等于 72（即 3 行）并且当前用户没有正在滚动，则保持滚动到最底端
         if (gapToBottom() <= 72 && !getIsScrolling()) {
@@ -147,10 +155,19 @@ export const ChatProvider: FC<{ children: ReactNode }> = ({ children }) => {
       } catch (e) {
         // 发生错误时，展示错误消息
         setIsLoading(false);
-        setMessages([
+        const message = [
           ...newMessages,
           { isError: true, role: Role.assistant, content: (e as ResError).message || (e as ResError).code.toString() },
-        ]);
+        ];
+        setMessages(message);
+        if (typeof historyIndex === 'number') {
+          const minHistory = history?.filter((_, index) => index !== Number(historyIndex)) ?? [];
+          const newHistory = [{ messages: newMessages }, ...(minHistory ?? [])];
+          setMiniProgramCache(newHistory);
+        } else {
+          const newHistory = [{ messages: newMessages }, ...(history ?? [])];
+          setMiniProgramCache(newHistory);
+        }
       }
     },
     [settings, messages, history, historyIndex],
@@ -183,17 +200,17 @@ export const ChatProvider: FC<{ children: ReactNode }> = ({ children }) => {
       }
 
       // 如果当前有正在进行的聊天，则将正在进行的聊天归档到 history 中
-      if (historyIndex === 'current') {
-        const newHistory = [{ messages }, ...(history ?? [])];
-        setHistory(newHistory);
-        setCache('history', newHistory);
-        setMessages([]);
-        setCache('messages', []);
-        setHistoryIndex(index);
-        setIsMenuShow(false);
-        await sleep(16);
-        scrollToBottom();
-      }
+      // if (historyIndex === 'current') {
+      //   const newHistory = [{ messages }, ...(history ?? [])];
+      //   setHistory(newHistory);
+      //   setMiniProgramCache(newHistory);
+      //   setMessages([]);
+      //   setCache('messages', []);
+      //   setHistoryIndex(index);
+      //   setIsMenuShow(false);
+      //   await sleep(16);
+      //   scrollToBottom();
+      // }
     },
     [setIsMenuShow, historyIndex, messages, history],
   );
@@ -212,7 +229,7 @@ export const ChatProvider: FC<{ children: ReactNode }> = ({ children }) => {
       const newHistory = history?.filter((_, index) => index !== deleteIndex) ?? [];
 
       setHistory(newHistory);
-      setCache('history', newHistory);
+      setMiniProgramCache(newHistory);
 
       // 选择最近的一条聊天记录展示
       setHistoryIndex(newHistory && newHistory.length > 0 ? Math.min(deleteIndex, newHistory.length - 1) : 'empty');
@@ -227,7 +244,7 @@ export const ChatProvider: FC<{ children: ReactNode }> = ({ children }) => {
       newHistory = [{ messages }, ...newHistory];
     }
     setHistory(newHistory);
-    setCache('history', newHistory);
+    // setMiniProgramCache(newHistory);
     setMessages([]);
     setCache('messages', []);
     setCurrentMenu(MenuKey.InboxStack);
