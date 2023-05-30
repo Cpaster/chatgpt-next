@@ -5,7 +5,7 @@ export function setCache(key: string, value: any) {
   localStorage.setItem(key, JSON.stringify(value));
 }
   
-export function setMiniProgramCache(value: any) {
+export function setMiniProgramCache(value: any[]) {
   setCache('history', value);
   const mainList = value?.map((item, index) => {
     const first = item?.messages?.[0];
