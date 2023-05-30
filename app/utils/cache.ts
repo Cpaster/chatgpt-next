@@ -1,7 +1,4 @@
 export function setCache(key: string, value: any) {
-  if (key === 'messages') {
-    console.log(value);
-  }
   localStorage.setItem(key, JSON.stringify(value));
 }
   

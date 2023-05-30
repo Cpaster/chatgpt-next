@@ -30,8 +30,7 @@ export const Menu = () => {
         <MenuEntryButton />
       </div> */}
       <MenuMask>
-        {/* <MenuTabs /> */}
-        {/* <MenuTabsContent /> */}
+        <History />
         <MenuFooter />
       </MenuMask>
     </>
@@ -128,14 +127,8 @@ const MenuTabs = () => {
  * 菜单栏 tabs 内容
  */
 const MenuTabsContent = () => {
-  const { currentMenu } = useContext(MenuContext)!;
-
-  return (
-    <div className="grow overflow-y-auto md:px-4">
-      {currentMenu === MenuKey.InboxStack && <History />}
-      {currentMenu === MenuKey.AdjustmentsHorizontal && <Settings />}
-    </div>
-  );
+  // const { currentMenu } = useContext(MenuContext)!;
+  return <History />;
 };
 
 /**
