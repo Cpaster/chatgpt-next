@@ -12,9 +12,9 @@ export function setMiniProgramCache(value: any[]) {
     const second = item?.messages?.[1];
     let content = {
       id: index,
-      title: first?.role === 'user' ? (first.content.split(0, 10) + '...') : '无标题',
+      title: first?.role === 'user' ? (first.content.substr(0, 10) + '...') : '无标题',
       content: (second?.role === 'assistant' && !second?.isError) ? 
-      (second.content.split(0, 30) + '...') : ''
+      (second.content.substr(0, 30) + '...') : ''
     };
     return content;
   });
