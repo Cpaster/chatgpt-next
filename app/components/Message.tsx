@@ -30,7 +30,7 @@ export const Message: FC<MessageType | ChatResponse> = (props) => {
         className={classNames('rounded w-10 h-10', {
           'p-1.5 bg-white dark:bg-gray-200': isUser,
         })}
-        src={isAssistant ? '/chatgpt-icon-green.png' : isUser ? '/heroicons-user.svg' : 'TODO'}
+        src={isAssistant ? '/system-icon.jpg' : isUser ? '/heroicons-user.svg' : 'TODO'}
         alt={`${role} avatar`}
         width={40}
         height={40}

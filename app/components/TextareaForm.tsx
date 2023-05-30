@@ -10,7 +10,7 @@ import { isDomChildren } from '@/utils/isDomChildren';
 
 export const TextareaForm: FC = () => {
   const { isMobile } = useContext(DeviceContext)!;
-  const { isLogged } = useContext(LoginContext)!;
+  // const { isLogged } = useContext(LoginContext)!;
   const { sendMessage } = useContext(ChatContext)!;
 
   // 是否正在中文输入
@@ -149,8 +149,8 @@ export const TextareaForm: FC = () => {
                       disabled:bg-gray-200 disabled:cursor-not-allowed md:min-h-[4rem]
                       dark:bg-chat-bubble-dark dark:disabled:bg-gray-700 dark:placeholder:text-gray-500`}
             ref={textareaRef}
-            disabled={!isLogged}
-            placeholder={isLogged ? '' : isMobile ? '请点击右上角设置密钥' : '请点击左上角钥匙按钮设置密钥'}
+            // disabled={!isLogged}
+            // placeholder={isLogged ? '' : isMobile ? '请点击右上角设置密钥' : '请点击左上角钥匙按钮设置密钥'}
             onChange={onChange}
             onKeyDown={onKeyDone}
             onCompositionStart={onCompositionStart}
@@ -158,7 +158,7 @@ export const TextareaForm: FC = () => {
             rows={1}
           />
           <div className="flex items-center">
-            <input className="px-3 py-2 h-full max-h-16" type="submit" disabled={submitDisabled} value="发送" />
+            <input className="px-3 py-2 h-full max-h-16" type="submit" value="发送" />
           </div>
         </form>
       </div>

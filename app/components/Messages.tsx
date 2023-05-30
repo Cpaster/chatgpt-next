@@ -42,7 +42,6 @@ export const Messages = () => {
       {isLoading && <Message role={Role.assistant} content={LOADING_MESSAGE} />}
       {messages.length > 1 && (
         <SystemMessage>
-          连续对话会加倍消耗 tokens，
           <a className="text-gray-link" onClick={startNewChat}>
             开启新对话
           </a>

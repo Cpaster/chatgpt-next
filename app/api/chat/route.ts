@@ -72,9 +72,6 @@ export async function POST(req: NextRequest) {
             // 获取 delta.content
             const content = (chunkJSON.choices[0].delta as { content: string }).content;
             if (content) {
-              console.log(content);
-              const de = encoder.encode(content);
-              console.log(Object.prototype.toString.call(de));
               controller.enqueue(encoder.encode(content));
             }
           } catch (e) {

@@ -1,5 +1,5 @@
 <h1 align="center">
-  ChatGPT Next
+  智酷大脑
 </h1>
 
 <h3 align="center">

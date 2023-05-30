@@ -7,9 +7,9 @@ import { sleep } from './sleep';
 /** 开始登录 */
 export function login() {
   // 如果已登录，则提前结束
-  if (getCookie('apiKey')) {
-    return true;
-  }
+  // if (getCookie('apiKey')) {
+  //   return true;
+  // }
 
   return new Promise<boolean>(async (resolve) => {
     // 如果未登录，则弹窗让用户输入密钥

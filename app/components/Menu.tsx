@@ -118,7 +118,7 @@ const MenuTabs = () => {
         );
       })}
       <div className="grow" />
-      <LoginButton />
+      {/* <LoginButton /> */}
     </menu>
   );
 };
@@ -148,7 +148,7 @@ const MenuFooter = () => {
     >
       由{' '}
       <a className="text-gray-link" href="https://github.com/xcatliu/chatgpt-next" target="_blank">
-        ChatGPT Next
+        智酷大脑
       </a>{' '}
       驱动
     </div>

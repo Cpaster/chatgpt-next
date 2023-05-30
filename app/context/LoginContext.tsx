@@ -43,14 +43,14 @@ export const LoginProvider: FC<{ children: ReactNode; cookieApiKey?: string }> =
     }
 
     // 如果 cookie 中存在 apiKey，则将其缓存在 localStorage 中
-    if (cookieApiKey) {
-      setIsLogged(true);
-      setCache('apiKey', cookieApiKey);
-      return;
-    }
+    // if (cookieApiKey) {
+    //   setIsLogged(true);
+    //   setCache('apiKey', cookieApiKey);
+    //   return;
+    // }
 
     // 如果所有地方都不存在 apiKey，则弹出登录框
-    login();
+    // login();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

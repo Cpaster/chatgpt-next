@@ -12,9 +12,9 @@ import { SettingsProvider } from '@/context/SettingsContext';
 import { isWeChat as utilIsWeChat } from '@/utils/device';
 
 export const metadata: Metadata = {
-  title: 'ChatGPT Next',
+  title: '智酷大脑',
   description: '微信风格的 ChatGPT，基于 Next.js 构建，私有化部署的最佳选择！',
-  icons: { icon: '/chatgpt-icon-green.png', apple: '/chatgpt-icon-green.png' },
+  icons: { icon: '/system-icon.jpg', apple: '/system-icon.jpg' },
   viewport: { width: 'device-width', initialScale: 1, viewportFit: 'cover' },
 };
 
@@ -40,11 +40,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           windowHeight={windowHeight}
         >
           <SettingsProvider isLogged={!!cookieApiKey}>
-            <LoginProvider cookieApiKey={cookieApiKey}>
-              <MenuProvider>
-                <ChatProvider>{children}</ChatProvider>
-              </MenuProvider>
-            </LoginProvider>
+            <MenuProvider>
+              <ChatProvider>{children}</ChatProvider>
+            </MenuProvider>
           </SettingsProvider>
         </DeviceProvider>
         <script async src="/prism.js" />
