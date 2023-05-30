@@ -26,12 +26,12 @@ export const Menu = () => {
 
   return (
     <>
-      <div className={classNames('fixed z-20 top-0 right-0 md:hidden', { absolute: isWeChat, hidden: isMenuShow })}>
+      {/* <div className={classNames('fixed z-20 top-0 right-0 md:hidden', { absolute: isWeChat, hidden: isMenuShow })}>
         <MenuEntryButton />
-      </div>
+      </div> */}
       <MenuMask>
-        <MenuTabs />
-        <MenuTabsContent />
+        {/* <MenuTabs /> */}
+        {/* <MenuTabsContent /> */}
         <MenuFooter />
       </MenuMask>
     </>

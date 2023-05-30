@@ -24,19 +24,19 @@ export const MenuEntryButton = () => {
     return null;
   }
 
-  if (history.length > 0) {
-    return (
-      <button
-        onClick={() => {
-          scrollToTop();
-          setCurrentMenu(MenuKey.InboxStack);
-          setIsMenuShow(true);
-        }}
-      >
-        <InboxStackIcon />
-      </button>
-    );
-  }
+  // if (history.length > 0) {
+  //   return (
+  //     <button
+  //       onClick={() => {
+  //         scrollToTop();
+  //         setCurrentMenu(MenuKey.InboxStack);
+  //         setIsMenuShow(true);
+  //       }}
+  //     >
+  //       <InboxStackIcon />
+  //     </button>
+  //   );
+  // }
 
   return (
     <button
@@ -46,7 +46,7 @@ export const MenuEntryButton = () => {
         setIsMenuShow(true);
       }}
     >
-      <AdjustmentsHorizontalIcon />
+      {/* <AdjustmentsHorizontalIcon /> */}
     </button>
   );
 };

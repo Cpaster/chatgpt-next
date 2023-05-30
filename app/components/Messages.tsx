@@ -40,13 +40,13 @@ export const Messages = () => {
         <Message key={index} {...message} />
       ))}
       {isLoading && <Message role={Role.assistant} content={LOADING_MESSAGE} />}
-      {messages.length > 1 && (
+      {/* {messages.length > 1 && (
         <SystemMessage>
           <a className="text-gray-link" onClick={startNewChat}>
             开启新对话
           </a>
         </SystemMessage>
-      )}
+      )} */}
     </div>
   );
 };
